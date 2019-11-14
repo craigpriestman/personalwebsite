@@ -1,0 +1,42 @@
+{
+  "name": "eleventy-base",
+  "version": "1.0.0",
+  "description": "This is the starting point for Eleventy projects",
+  "scripts": {
+    "clear:all": "rm -rf dist",
+    "clear:styles": "rm -rf dist/assets/css",
+    "build:scssDev": "node-sass --output-style compressed --source-map true -o dist/assets/css src/scss/style.scss",
+    "build:scssProd": "node-sass --output-style compressed -o dist/assets/css src/scss/style.scss",
+    "autoprefixer": "postcss -u autoprefixer -r dist/assets/css/*.css",
+    "build:stylesDev": "npm run clear:styles && npm run build:scssDev && npm run autoprefixer",
+    "build:stylesProd": "npm run clear:styles && npm run build:scssProd && npm run autoprefixer",
+    "watch:styles": "onchange 'src/scss/**/*.scss' -- npm run build:stylesDev",
+    "serve:styles": "npm run build:stylesDev && npm run watch:styles",
+    "build:assetsProd": "npm run build:stylesProd",
+    "serve:site": "npm run clear:all && npx @11ty/eleventy --serve --quiet",
+    "build": "npm run clear:all && npm run build:assetsProd && npx @11ty/eleventy",
+    "staging": "npm run build && echo 'User-agent: *\nDisallow: /' > dist/robots.txt",
+    "start": "parallelshell 'npm run serve:site' 'npm run serve:styles'",
+    "bump:major": "bump major --commit 'Bumps version number to %s' --tag '%s' src/site/_data/site.json *.json",
+    "bump:minor": "bump minor --commit 'Bumps version number to %s' --tag '%s' src/site/_data/site.json *.json",
+    "bump:patch": "bump patch --commit 'Bumps version number to %s' --tag '%s' src/site/_data/site.json *.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tempertemper/eleventy-base.git"
+  },
+  "author": "Martin Underhill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tempertemper/eleventy-base/issues"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.9.0",
+    "autoprefixer": "^9.7.1",
+    "node-sass": "^4.13.0",
+    "onchange": "^6.1.0",
+    "parallelshell": "3.0.1",
+    "postcss-cli": "^6.1.3",
+    "version-bump-prompt": "^5.0.6"
+  }
+}
