@@ -3,7 +3,7 @@ title: Craig Priestman
 description: This is the website homepage
 layout: default
 ---
-Hey ![image]()
+Hey ![image](/assets/img/waving-hand-emoji.png)
 I’m a user experience designer, inspired to solve complex problems by empathising with people.
 
 ![image]()
