@@ -38,7 +38,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^0.9.0",
     "autoprefixer": "^9.7.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "onchange": "^6.1.0",
     "parallelshell": "3.0.1",
     "postcss-cli": "^6.1.3",
